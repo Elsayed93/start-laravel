@@ -23,9 +23,9 @@
                     <thead class="table-primary">
                         <tr>
                             <th>Id</th>
-                            <th>Offer Name</th>
-                            <th>Price</th>
-                            <th>Details</th>
+                            <th>{{__('index-offers.offer-name')}}</th>
+                            <th>{{__('index-offers.offer-price')}}</th>
+                            <th>{{__('index-offers.offer-details')}}</th>
                         </tr>
                     </thead>
 
