@@ -28,20 +28,24 @@ class OfferRequest extends FormRequest
 
 
         return [
-            'name' => 'required|unique:offers|max:255',
+            'name_ar' => 'required|unique:offers,name_ar|max:255',
+            'name_en' => 'required|unique:offers,name_en|max:255',
+            'details_ar' => 'required|min:10',
+            'details_en' => 'required|min:10',
             'price' => 'required|max:255|min:1',
-            'details' => 'required|min:10',
-
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => __('messages.name.required'),
-            'name.unique' => __('messages.name.unique'),
+            'name_ar.required' => __('messages.name.required'),
+            'name_ar.unique' => __('messages.name.unique'),
+            'name_en.required' => __('messages.name.required'),
+            'name_en.unique' => __('messages.name.unique'),
+            'details_ar.required' => __('messages.details.required'),
+            'details_en.required' => __('messages.details.required'),
             'price.required' => __('messages.price.required'),
-            'details.required' => __('messages.details.required'),
 
         ];
     }

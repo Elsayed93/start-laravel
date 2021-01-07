@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 // use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 class OffersController extends Controller
 {
@@ -15,7 +17,14 @@ class OffersController extends Controller
         // $offers = Offer::select('name', 'price', 'photo')->get();
         // dd($offers);
 
-        $offers = Offer::all();
+        // $offers = Offer::all();
+        $offers = Offer::select(
+            'id',
+            'name_' . LaravelLocalization::getCurrentLocale() . ' as name',
+            'details_' . LaravelLocalization::getCurrentLocale() . ' as details',
+            'price'
+        )->get();
+        // return $offers;
         // dd($offers);
         return view('offers.index', ['offers' => $offers]);
     }
@@ -59,9 +68,11 @@ class OffersController extends Controller
          * store data in database after validation
          */
         $offer = Offer::create([
-            'name' => $request->name,
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en,
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
             'price' => $request->price,
-            'details' => $request->details,
         ]);
 
         // dd($offer);

@@ -12,7 +12,7 @@
 
         <div class="row mt-5">
             <div class="col-sm-12">
-                <a href="{{route('offers.create')}}" class="btn btn-primary btn-lg">{{ __('index-offers.add-offer') }}</a>
+                <a href="{{ route('offers.create') }}" class="btn btn-primary btn-lg">{{ __('index-offers.add-offer') }}</a>
             </div>
         </div>
 
@@ -23,9 +23,9 @@
                     <thead class="table-primary">
                         <tr>
                             <th>Id</th>
-                            <th>{{__('index-offers.offer-name')}}</th>
-                            <th>{{__('index-offers.offer-price')}}</th>
-                            <th>{{__('index-offers.offer-details')}}</th>
+                            <th> @lang('index-offers.offer-name')</th>
+                            <th>{{ __('index-offers.offer-details') }}</th>
+                            <th>{{ __('index-offers.offer-price') }}</th>
                         </tr>
                     </thead>
 
@@ -35,8 +35,8 @@
                             <tr>
                                 <td>{{ $offer->id }}</td>
                                 <td>{{ $offer->name }}</td>
-                                <td>{{ $offer->price }}</td>
                                 <td>{{ $offer->details }}</td>
+                                <td>{{ $offer->price }}</td>
                             </tr>
                         @endforeach
 

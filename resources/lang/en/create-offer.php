@@ -3,9 +3,11 @@
 
 return [
     'add-offer' => 'Add your Offer',
-    'offer-name' => 'Offer Name',
+    'offer-name_ar' => 'Offer Name in Arabic',
+    'offer-name_en' => 'Offer Name in English',
+    'offer-details_ar' => 'details in Arabic',
+    'offer-details_en' => 'details in English',
     'offer-price' => 'Offer Price',
-    'offer-details' => 'Offer Details',
     'save-offer' => 'Save Offer',
     'success-offer' => 'Offer added successfully',
 ];

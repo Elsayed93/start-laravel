@@ -25,10 +25,11 @@ class OfferFactory extends Factory
     {
         return [
             //
-            'name' => $this->faker->name,
-            'price' => rand(100, 300),
-            'details' => $this->faker->text(),
-
+            'name_ar' => $this->faker->name,
+            'name_en' => $this->faker->name,
+            'details_ar' => $this->faker->text(),
+            'details_en' => $this->faker->text(),
+            'price' => rand(1, 200),
         ];
     }
 }
