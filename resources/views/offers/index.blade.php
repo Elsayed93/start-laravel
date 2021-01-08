@@ -23,9 +23,10 @@
                     <thead class="table-primary">
                         <tr>
                             <th>Id</th>
-                            <th> @lang('index-offers.offer-name')</th>
+                            <th> {{__('index-offers.offer-name')}}</th>
                             <th>{{ __('index-offers.offer-details') }}</th>
                             <th>{{ __('index-offers.offer-price') }}</th>
+                            <th>{{ __('index-offers.offer-actions') }}</th>
                         </tr>
                     </thead>
 
@@ -37,6 +38,12 @@
                                 <td>{{ $offer->name }}</td>
                                 <td>{{ $offer->details }}</td>
                                 <td>{{ $offer->price }}</td>
+                                <td style="display: flex;">
+                                    {{-- edit offer --}}
+                                    <a style="margin: 0 5px;" href="{{url('offers/edit/' . $offer->id)}}" class="editAction">{{__('index-offers.offer-edit')}}</a> 
+                                    {{-- delete offer --}}
+                                    <a style="margin: 0 5px;" href="" class="deleteAction">{{__('index-offers.offer-delete')}}</a>
+                                </td>
                             </tr>
                         @endforeach
 

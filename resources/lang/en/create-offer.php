@@ -10,4 +10,6 @@ return [
     'offer-price' => 'Offer Price',
     'save-offer' => 'Save Offer',
     'success-offer' => 'Offer added successfully',
+    'edit-offer' => 'Edite Offer',
+    'update-offer' => 'Update',
 ];

@@ -85,6 +85,22 @@ class OffersController extends Controller
         return view('offers.create');
     }
 
+    // edit offer view 
+    public function edit($id)
+    {
+        $offer = Offer::find($id);
+        // dd($offer);
+        return view('offers.edit', ['offer' => $offer]);
+    }
+
+    // update offer view 
+    public function update($id)
+    {
+        $offer = Offer::find($id);
+        // dd($offer);
+        return view('offers.edit', ['offer' => $offer]);
+    }
+
     // protected function validationRules()
     // {
     //     return [
