@@ -37,6 +37,9 @@ Route::group([
     Route::get('/', 'OffersController@index')->name('offers.index'); //get all offers
     Route::get('/create', 'OffersController@create')->name('offers.create'); // show offer create form 
     Route::post('/store', 'OffersController@store')->name('offers.store'); // store offer in offers table
+    Route::get('edit/{offer_id}', 'OffersController@edit')->name('offer.edit'); // edite offer  
+   // Route::get('update/{offer_id}', 'OffersController@update')->name('offers.update'); // update offer  
+    
 });
 
 // view method to return a view direct ,,, (url, view name, data passed to view)
