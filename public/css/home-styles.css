@@ -10344,3 +10344,25 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+/* my own style*/
+.editAction{
+  background-color: #115ED7;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+
+}
+
+.editAction, .deleteAction:hover{
+  color: white;
+}
+
+.deleteAction{
+  background-color: #df004a;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+
