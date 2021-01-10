@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Offer\UpdateRequest;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -93,16 +94,16 @@ class OffersController extends Controller
         // dd($offer);
         // return $offer;
         $offer = Offer::find($id);
-        if (!$offer){
+        if (!$offer) {
             return redirect()->back();
         }
         return view('offers.edit', ['offer' => $offer]);
     }
 
     // update offer view 
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-       
+
         $offer = Offer::findOrFail($id);
         // dd($offer);
         $offer->name_ar = $request->name_ar;
@@ -112,7 +113,8 @@ class OffersController extends Controller
         $offer->price = $request->price;
         $offer->save();
         // return $offer;
-        return redirect()->route('offers.index', ['updateMessage' => 'offer updated successfully']);
+        //return redirect()->route('offers.index', ['updateMessage'=> __('index-offers.offer-updateSuccessfully')]);
+        return redirect()->route('offers.index')->with('updateMessage', __('index-offers.offer-updateSuccessfully'));
     }
 
     // protected function validationRules()

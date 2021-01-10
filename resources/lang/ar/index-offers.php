@@ -9,6 +9,7 @@ return [
     'offer-price' => 'السعر',
     'offer-actions' => 'إجراءات',
     'offer-edit' => 'تعديل',
+    'offer-updateSuccessfully' => 'تم تعديل العرض بنجاح',
     'offer-delete' => 'مسح',
     'notFound-offer' => 'هذا العرض غير موجود',
 

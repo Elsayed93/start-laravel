@@ -12,5 +12,4 @@ return [
     'success-offer' => 'تم إضافة العرض بنجاح',
     'edit-offer' => 'تعديل العرض',
     'update-offer' => 'تعديل',
-    'success-update' => 'تم تعديل العرض بنجاح',
 ];

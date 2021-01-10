@@ -11,7 +11,5 @@ return [
     'save-offer' => 'Save Offer',
     'success-offer' => 'Offer added successfully',
     'edit-offer' => 'Edite Offer',
-    'update-offer' => 'Update',
-    'success-update' => 'Offer was updated successfully',
-    
+    'update-offer' => 'Update',    
 ];

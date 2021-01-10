@@ -9,6 +9,7 @@ return [
     'offer-price' => 'Price',
     'offer-actions' => 'Actions',
     'offer-edit' => 'Edit',
+    'offer-updateSuccessfully' => 'Offer updated successfully',
     'offer-delete' => 'Delete',
     'notFound-offer' => 'Offer does not exsist',
     

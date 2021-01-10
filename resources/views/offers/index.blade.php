@@ -11,17 +11,15 @@
             </div>
         </div>
 
-        @isset($updateMessage)
+        @if (session()->has('updateMessage'))
             <div class="row mt-3">
-                <div class="col-sm-6 alert alert-success" role="alert">
-                    {{-- Offer updated successfully --}}
-                    <h1>{{ __('create-offer.success-update') }}</h1>
-
+                <div class="col-sm-6">
+                    <div class="alert alert-success alert-dismissable">{{ session()->get('updateMessage') }}</div>
                 </div>
             </div>
+        @endif
 
-        @endisset
-
+        {{-- Add Offer Button --}}
         <div class="row mt-5">
             <div class="col-sm-12">
                 <a href="{{ route('offers.create') }}" class="btn btn-primary btn-lg">{{ __('index-offers.add-offer') }}</a>
@@ -43,23 +41,24 @@
                     </thead>
 
                     <tbody>
-
-                        @foreach ($offers as $offer)
-                            <tr>
-                                <td>{{ $offer->id }}</td>
-                                <td>{{ $offer->name }}</td>
-                                <td>{{ $offer->details }}</td>
-                                <td>{{ $offer->price }}</td>
-                                <td style="display: flex;">
-                                    {{-- edit offer --}}
-                                    <a style="margin: 0 5px;" href="{{ url('offers/edit/' . $offer->id) }}"
-                                        class="editAction">{{ __('index-offers.offer-edit') }}</a>
-                                    {{-- delete offer --}}
-                                    <a style="margin: 0 5px;" href=""
-                                        class="deleteAction">{{ __('index-offers.offer-delete') }}</a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @isset($offers)
+                            @foreach ($offers as $offer)
+                                <tr>
+                                    <td>{{ $offer->id }}</td>
+                                    <td>{{ $offer->name }}</td>
+                                    <td>{{ $offer->details }}</td>
+                                    <td>{{ $offer->price }}</td>
+                                    <td style="display: flex;">
+                                        {{-- edit offer --}}
+                                        <a style="margin: 0 5px;" href="{{ url('offers/edit/' . $offer->id) }}"
+                                            class="editAction">{{ __('index-offers.offer-edit') }}</a>
+                                        {{-- delete offer --}}
+                                        <a style="margin: 0 5px;" href=""
+                                            class="deleteAction">{{ __('index-offers.offer-delete') }}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endisset
 
                     </tbody>
 
