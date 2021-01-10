@@ -10,4 +10,6 @@ return [
     'offer-actions' => 'إجراءات',
     'offer-edit' => 'تعديل',
     'offer-delete' => 'مسح',
+    'notFound-offer' => 'هذا العرض غير موجود',
+
 ];

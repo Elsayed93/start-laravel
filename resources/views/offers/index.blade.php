@@ -4,11 +4,25 @@
 
 @section('content')
     <div class="container">
+        {{-- All Offers --}}
         <div class="row mt-5">
             <div class="col-sm-12">
                 <h1>{{ __('index-offers.all-offers') }}</h1>
             </div>
         </div>
+
+
+        @isset($offer)
+            <div class="row mt-2">
+                <div class="col-sm-6">
+                    <div class="alert alert-danger" role="alert">
+                        {{-- offer does not exist --}}
+                        {{ __('index-offers.notFound-offer')}}
+                    </div>
+                </div>
+            </div>
+        @endisset
+
 
         <div class="row mt-5">
             <div class="col-sm-12">

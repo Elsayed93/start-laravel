@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -88,17 +88,32 @@ class OffersController extends Controller
     // edit offer view 
     public function edit($id)
     {
-        $offer = Offer::find($id);
+        // return $id; 
+        //$offer = Offer::findOrFail($id); //return Not Found if it was not found  
         // dd($offer);
+        // return $offer;
+        $offer = Offer::find($id);
+        if (!$offer){
+            return redirect(404)->back();
+        }
         return view('offers.edit', ['offer' => $offer]);
     }
 
     // update offer view 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $offer = Offer::find($id);
+        $offer = Offer::findOrFail($id);
         // dd($offer);
-        return view('offers.edit', ['offer' => $offer]);
+        $offer->name_ar = $request->name_ar;
+        $offer->name_en = $request->name_en;
+        $offer->details_ar = $request->details_ar;
+        $offer->details_en = $request->details_en;
+        $offer->price = $request->price;
+
+        $offer->save();
+
+        return $offer;
+        return view('offers.edit', ['offer' => 'offer', 'updateMessage' => 'offer updated successfully']);
     }
 
     // protected function validationRules()

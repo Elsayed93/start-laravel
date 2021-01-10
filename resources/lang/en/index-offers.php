@@ -10,4 +10,6 @@ return [
     'offer-actions' => 'Actions',
     'offer-edit' => 'Edit',
     'offer-delete' => 'Delete',
+    'notFound-offer' => 'Offer does not exsist',
+    
 ];
