@@ -94,7 +94,7 @@ class OffersController extends Controller
         // return $offer;
         $offer = Offer::find($id);
         if (!$offer){
-            return redirect(404)->back();
+            return redirect()->back();
         }
         return view('offers.edit', ['offer' => $offer]);
     }
@@ -102,6 +102,7 @@ class OffersController extends Controller
     // update offer view 
     public function update(Request $request, $id)
     {
+       
         $offer = Offer::findOrFail($id);
         // dd($offer);
         $offer->name_ar = $request->name_ar;
@@ -112,8 +113,8 @@ class OffersController extends Controller
 
         $offer->save();
 
-        return $offer;
-        return view('offers.edit', ['offer' => 'offer', 'updateMessage' => 'offer updated successfully']);
+        // return $offer;
+        return redirect()->route('offers.index', ['updateMessage' => 'offer updated successfully']);
     }
 
     // protected function validationRules()

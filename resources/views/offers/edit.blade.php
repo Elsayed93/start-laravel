@@ -12,24 +12,15 @@
             </div>
         </div>
 
-        @isset($updateMessage)
-            <div class="row mt-3">
-                <div class="col-sm-6 alert alert-success" role="alert">
-                    {{-- Offer updated successfully --}}
-                    <h1>{{ __('create-offer.success-update') }}</h1>
-
-                </div>
-            </div>
-
-        @endisset
 
     </div>
 
     <div class="container">
         <div class="row mt-5">
             <div class="col-sm-12">
-                <form method="POST" action="{{ url(LaravelLocalization::setLocale() . '/offers/update/' . $offer ?? ''->id) }}">
+                <form method="POST" action="{{ route('offers.update',$offer->id) }}">
                     @csrf
+
                     <div class="mb-3">
                         {{-- offer name_ar --}}
                         <label for="name_ar" class="form-label">{{ __('create-offer.offer-name_ar') }}</label>
