@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-sm-12">
-                <form method="POST" action="{{ route('offers.update',$offer->id) }}">
+                <form method="POST" action="{{ route('offers.update', $offer->id) }}">
                     @csrf
 
                     <div class="mb-3">

@@ -110,9 +110,7 @@ class OffersController extends Controller
         $offer->details_ar = $request->details_ar;
         $offer->details_en = $request->details_en;
         $offer->price = $request->price;
-
         $offer->save();
-
         // return $offer;
         return redirect()->route('offers.index', ['updateMessage' => 'offer updated successfully']);
     }
