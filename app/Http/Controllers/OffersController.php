@@ -32,7 +32,8 @@ class OffersController extends Controller
 
     public function store(OfferRequest $request)
     {
-        // dd($request->all());
+
+        dd($request->all());
         // $offer = Offer::create([
         //     'name' => 'test-name',
         //     'price' => 'test-price',
@@ -65,6 +66,22 @@ class OffersController extends Controller
         //     return redirect()->back()->withErrors($validator)->withInput();
         // }
 
+
+        /*******************************          
+         * save photo
+         */
+
+        $file_extension = $request->image->getClientOriginalExtension(); //to get image extension
+        // dd($file_extension);
+        $file_name = time() . '.' . $file_extension;
+        // dd($file_name);
+        $path = 'images/offers';
+        $image = $request->image->move($path, $file_name); // move the filename(image from request after rename it) to the $path(in public root directory)
+        dd($image);
+        // if ($image) {
+        //     return 'moved';
+        // }
+        // return 'false';
         /*******************************          
          * store data in database after validation
          */
@@ -74,6 +91,7 @@ class OffersController extends Controller
             'details_ar' => $request->details_ar,
             'details_en' => $request->details_en,
             'price' => $request->price,
+            'image' => $file_name,
         ]);
 
         // dd($offer);

@@ -1,12 +1,12 @@
 @extends('offers.nav')
 
-@section('title', 'create offer')
+@section('title', __('create-offer.edit-offer'))
 
 @section('content')
     <div class="container">
         <div class="row mt-5">
             <div class="col-sm-12">
-                {{-- Add new offer --}}
+                {{-- edit offer --}}
                 <h1>{{ __('create-offer.edit-offer') }}</h1>
 
             </div>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="container">
-        <div class="row mt-5">
+        <div class="row my-5">
             <div class="col-sm-12">
                 <form method="POST" action="{{ route('offers.update', $offer->id) }}">
                     @csrf
@@ -93,8 +93,21 @@
                             </div>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        {{-- offer image --}}
+                        <label for="image" class="form-label">{{ __('create-offer.offer-image') }}</label>
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
+                            value="{{ $offer->image }}" placeholder="{{ __('create-offer.offer-image') }}">
+                        @error('image')
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     {{-- Update Button --}}
-                    <button type="submit" class="btn btn-primary">{{ __('create-offer.update-offer') }}</button>
+                    <button type="submit" class="btn btn-primary" style="font-size: 12px; width:fit-content; padding:15px 20px;">{{ __('create-offer.update-offer') }}</button>
                 </form>
 
             </div>

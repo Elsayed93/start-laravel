@@ -8,8 +8,9 @@ return [
     'offer-details_ar' => 'details in Arabic',
     'offer-details_en' => 'details in English',
     'offer-price' => 'Offer Price',
-    'save-offer' => 'Save Offer',
+    'save-offer' => 'Add Offer',
     'success-offer' => 'Offer added successfully',
     'edit-offer' => 'Edite Offer',
     'update-offer' => 'Update',    
+    'offer-image' => 'Upload Offer Image',    
 ];

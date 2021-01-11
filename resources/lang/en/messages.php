@@ -7,5 +7,6 @@ return [
     'price.required' => 'price is required',
     'details.required' => 'details are required',
     'add-offer' => 'Add your Offer',
+    'image.required' => 'Image is required',
 ];
 

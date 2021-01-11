@@ -30,6 +30,7 @@ class UpdateRequest extends FormRequest
             'details_ar' => 'required|min:10',
             'details_en' => 'required|min:10',
             'price' => 'required|max:255|min:1',
+            // 'image' => 'required'
         ];
     }
 
@@ -43,7 +44,7 @@ class UpdateRequest extends FormRequest
             'details_ar.required' => __('messages.details.required'),
             'details_en.required' => __('messages.details.required'),
             'price.required' => __('messages.price.required'),
-
+            // 'image' => __('messages.image.required'),
         ];
     }
 }

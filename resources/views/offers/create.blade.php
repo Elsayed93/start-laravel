@@ -1,8 +1,11 @@
 @extends('offers.nav')
 
-@section('title', 'create offer')
+@section('title',  __('create-offer.add-offer'))
 
 @section('content')
+
+    {{-- {{dd($errors->all())}} --}}
+
     <div class="container">
         <div class="row mt-5">
             <div class="col-sm-12">
@@ -26,9 +29,9 @@
     </div>
 
     <div class="container">
-        <div class="row mt-5">
+        <div class="row my-5">
             <div class="col-sm-12">
-                <form method="POST" action="{{ route('offers.store') }}">
+                <form method="POST" action="{{ route('offers.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         {{-- offer name_ar --}}
@@ -60,7 +63,8 @@
                         {{-- offer price --}}
                         <label for="price" class="form-label">{{ __('create-offer.offer-price') }}</label>
                         <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
-                            value="{{ old('price') }}" placeholder="{{ __('create-offer.offer-price') }}">
+                            aria-describedby="emailHelp" value="{{ old('price') }}"
+                            placeholder="{{ __('create-offer.offer-price') }}">
                         @error('price')
                             <div id="validationServerUsernameFeedback" class="invalid-feedback">
                                 {{ $message }}
@@ -93,7 +97,20 @@
                             </div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">{{ __('create-offer.save-offer') }}</button>
+
+                    <div class="mb-3">
+                        {{-- offer image --}}
+                        <label for="image" class="form-label">{{ __('create-offer.offer-image') }}</label>
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
+                            value="{{ old('image') }}" placeholder="{{ __('create-offer.offer-image') }}">
+                        @error('image')
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="font-size: 12px; width:fit-content; padding:15px 20px;"> {{ __('create-offer.save-offer') }}</button>
                 </form>
 
             </div>
