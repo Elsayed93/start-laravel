@@ -28,20 +28,23 @@ Route::get('/homepage', function () {
     return view('homepage');
 })->name('offershome');
 
-//offers CRUD
+// mcamara package prefix and middlewares
 Route::group([
     'prefix' =>  LaravelLocalization::setLocale() . '/offers',
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-], function(){
-
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+], function () {
+    //offers
     Route::get('/', 'OffersController@index')->name('offers.index'); //get all offers
     Route::get('/create', 'OffersController@create')->name('offers.create'); // show offer create form 
     Route::post('/store', 'OffersController@store')->name('offers.store'); // store offer in offers table
     Route::get('edit/{offer_id}', 'OffersController@edit')->name('offer.edit'); // edite offer  
     Route::post('update/{offer_id}', 'OffersController@update')->name('offers.update'); // update offer  
     Route::post('delete/{offer_id}', 'OffersController@delete')->name('offer.delete'); // Delete offer  
-     
+
+    //Videos 
+    Route::get('/videos', 'VideosController@index')->name('videos.index');
 });
+
 
 // view method to return a view direct ,,, (url, view name, data passed to view)
 Route::namespace('Front')->prefix('/users')->group(function () {

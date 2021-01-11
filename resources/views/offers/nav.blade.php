@@ -38,6 +38,10 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('offers.index')}}">Offers</a>
                     </li>
+                    {{-- Videos --}}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('videos.index')}}">Videos</a>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
