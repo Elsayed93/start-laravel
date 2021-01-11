@@ -103,20 +103,31 @@ class OffersController extends Controller
     // update offer view 
     public function update(UpdateRequest $request, $id)
     {
-
+        // $data = $request->validated();
+        // dd($data);
         $offer = Offer::findOrFail($id);
+        $offer->update($request->all());
+        // dd($request->all());
         // dd($offer);
-        $offer->name_ar = $request->name_ar;
-        $offer->name_en = $request->name_en;
-        $offer->details_ar = $request->details_ar;
-        $offer->details_en = $request->details_en;
-        $offer->price = $request->price;
-        $offer->save();
+        // $offer->name_ar = $request->name_ar;
+        // $offer->name_en = $request->name_en;
+        // $offer->details_ar = $request->details_ar;
+        // $offer->details_en = $request->details_en;
+        // $offer->price = $request->price;
+        // $offer->save();
         // return $offer;
         //return redirect()->route('offers.index', ['updateMessage'=> __('index-offers.offer-updateSuccessfully')]);
-        return redirect()->route('offers.index')->with('updateMessage', __('index-offers.offer-updateSuccessfully'));
+        // return redirect()->route('offers.index')->with('updateMessage', __('index-offers.offer-updateSuccessfully'));
+        return redirect()->back()->with('updateMessage', __('index-offers.offer-updateSuccessfully'));
     }
 
+    public function delete($id)
+    {
+        // return $id;
+        $offer = Offer::findOrFail($id);
+        $offer->delete();
+        return redirect()->route('offers.index')->with(['DeleteMessage' => __('index-offers.offer-deleteSuccessfully')]);
+    }
     // protected function validationRules()
     // {
     //     return [

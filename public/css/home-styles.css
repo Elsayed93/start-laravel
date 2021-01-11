@@ -10363,6 +10363,8 @@ body {
   color: white;
   padding: 5px;
   border-radius: 5px;
+  border-style: none;
+  border: 1px solid #E14447;
 }
 
 

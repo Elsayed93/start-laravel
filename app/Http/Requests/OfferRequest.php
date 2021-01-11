@@ -26,7 +26,6 @@ class OfferRequest extends FormRequest
     public function rules()
     {
 
-
         return [
             'name_ar' => 'required|unique:offers,name_ar|max:255',
             'name_en' => 'required|unique:offers,name_en|max:255',

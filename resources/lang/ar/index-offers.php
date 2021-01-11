@@ -12,5 +12,5 @@ return [
     'offer-updateSuccessfully' => 'تم تعديل العرض بنجاح',
     'offer-delete' => 'مسح',
     'notFound-offer' => 'هذا العرض غير موجود',
-
+    'offer-deleteSuccessfully' => 'تم مسح العرض بنجاح',
 ];

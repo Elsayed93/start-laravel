@@ -11,6 +11,15 @@
 
             </div>
         </div>
+        
+        {{-- offer updated successfully --}}
+        @if (session()->has('updateMessage'))
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <div class="alert alert-success alert-dismissable">{{ session()->get('updateMessage') }}</div>
+                </div>
+            </div>
+        @endif
 
 
     </div>

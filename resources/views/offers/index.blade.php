@@ -11,20 +11,20 @@
             </div>
         </div>
 
-        @if (session()->has('updateMessage'))
-            <div class="row mt-3">
-                <div class="col-sm-6">
-                    <div class="alert alert-success alert-dismissable">{{ session()->get('updateMessage') }}</div>
-                </div>
-            </div>
-        @endif
-
         {{-- Add Offer Button --}}
         <div class="row mt-5">
             <div class="col-sm-12">
                 <a href="{{ route('offers.create') }}" class="btn btn-primary btn-lg">{{ __('index-offers.add-offer') }}</a>
             </div>
         </div>
+
+        @if (session()->has('DeleteMessage'))
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <div class="alert alert-danger" role="alert">{{ session()->get('DeleteMessage') }}</div>
+                </div>
+            </div>
+        @endif
 
         <div class="row mt-5">
             <div class="col-sm-12">
@@ -53,8 +53,11 @@
                                         <a style="margin: 0 5px;" href="{{ url('offers/edit/' . $offer->id) }}"
                                             class="editAction">{{ __('index-offers.offer-edit') }}</a>
                                         {{-- delete offer --}}
-                                        <a style="margin: 0 5px;" href=""
-                                            class="deleteAction">{{ __('index-offers.offer-delete') }}</a>
+                                        <form action="{{ route('offer.delete', $offer->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit"
+                                                class="deleteAction">{{ __('index-offers.offer-delete') }}</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

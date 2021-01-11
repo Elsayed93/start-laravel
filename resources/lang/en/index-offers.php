@@ -10,7 +10,10 @@ return [
     'offer-actions' => 'Actions',
     'offer-edit' => 'Edit',
     'offer-updateSuccessfully' => 'Offer updated successfully',
+    'offer-deleteSuccessfully' => 'Offer Deleted successfully',
     'offer-delete' => 'Delete',
     'notFound-offer' => 'Offer does not exsist',
+
+    
     
 ];
