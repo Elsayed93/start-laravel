@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Offer\UpdateRequest;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
+use App\Trait\OfferTrait;
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -12,6 +13,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class OffersController extends Controller
 {
+    use OfferTrait;
+
     public function index()
     {
         // return Offer::select('name', 'price', 'details')->get();
@@ -33,7 +36,7 @@ class OffersController extends Controller
     public function store(OfferRequest $request)
     {
 
-        dd($request->all());
+        // dd($request->image);
         // $offer = Offer::create([
         //     'name' => 'test-name',
         //     'price' => 'test-price',
@@ -70,14 +73,9 @@ class OffersController extends Controller
         /*******************************          
          * save photo
          */
-
-        $file_extension = $request->image->getClientOriginalExtension(); //to get image extension
-        // dd($file_extension);
-        $file_name = time() . '.' . $file_extension;
-        // dd($file_name);
         $path = 'images/offers';
-        $image = $request->image->move($path, $file_name); // move the filename(image from request after rename it) to the $path(in public root directory)
-        dd($image);
+        $file_name = $this->saveImage($request->image, $path);
+        // dd($file_name);
         // if ($image) {
         //     return 'moved';
         // }
@@ -164,4 +162,5 @@ class OffersController extends Controller
     //         'details.required' => __('messages.details.required'),
     //     ];
     // }
+
 }

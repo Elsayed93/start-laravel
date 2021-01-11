@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-//offers
+
 
 //offers Home
 Route::get('/homepage', function () {
