@@ -1,20 +1,20 @@
 @extends('offers.nav')
 
-@section('title', 'offers list')
+@section('title', 'products list')
 
 @section('content')
 <div class="container">
-    {{-- All Offers --}}
+    {{-- All products --}}
     <div class="row mt-5">
         <div class="col-sm-12">
-            <h1>{{ __('index-offers.all-offers') }}</h1>
+            <h1>{{ __('products.all-products') }}</h1>
         </div>
     </div>
 
-    {{-- Add Offer Button --}}
+    {{-- Add product Button --}}
     <div class="row mt-5">
         <div class="col-sm-12">
-            <a href="{{ route('offers.create') }}" class="btn btn-primary btn-lg">{{ __('index-offers.add-offer') }}</a>
+            <a href="{{ route('products.create') }}" class="btn btn-primary btn-lg">{{ __('products.add-product') }}</a>
         </div>
     </div>
 
@@ -33,27 +33,27 @@
                 <thead class="table-primary">
                     <tr>
                         <th>Id</th>
-                        <th> {{ __('index-offers.offer-name') }}</th>
-                        <th>{{ __('index-offers.offer-details') }}</th>
-                        <th>{{ __('index-offers.offer-price') }}</th>
-                        <th>{{ __('index-offers.offer-actions') }}</th>
+                        <th> {{ __('products.product-name') }}</th>
+                        <th>{{ __('products.product-details') }}</th>
+                        <th>{{ __('products.product-price') }}</th>
+                        <th>{{ __('products.product-actions') }}</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @isset($offers)
-                    @foreach ($offers as $offer)
+                    @isset($products)
+                    @foreach ($products as $product)
                     <tr>
-                        <td>{{ $offer->id }}</td>
-                        <td>{{ $offer->name }}</td>
-                        <td>{{ $offer->details }}</td>
-                        <td>{{ $offer->price }}</td>
+                        <td>{{ $product->id }}</td>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->details }}</td>
+                        <td>{{ $product->price }}</td>
                         <td style="display: flex;">
                             {{-- edit offer --}}
-                            <a style="margin: 0 5px;" href="{{ url('offers/edit/' . $offer->id) }}"
+                            <a style="margin: 0 5px;" href="{{ url('offers/edit/' . $product->id) }}"
                                 class="editAction">{{ __('index-offers.offer-edit') }}</a>
                             {{-- delete offer --}}
-                            <form action="{{ route('offer.delete', $offer->id) }}" method="post">
+                            <form action="{{ route('offer.delete', $product->id) }}" method="post">
                                 @csrf
                                 <button type="submit"
                                     class="deleteAction">{{ __('index-offers.offer-delete') }}</button>

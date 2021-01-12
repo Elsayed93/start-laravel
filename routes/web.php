@@ -30,21 +30,32 @@ Route::get('/homepage', function () {
 
 // mcamara package prefix and middlewares
 Route::group([
-    'prefix' =>  LaravelLocalization::setLocale() . '/offers',
+    'prefix' =>  LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
     //offers
-    Route::get('/', 'OffersController@index')->name('offers.index'); //get all offers
-    Route::get('/create', 'OffersController@create')->name('offers.create'); // show offer create form 
-    Route::post('/store', 'OffersController@store')->name('offers.store'); // store offer in offers table
-    Route::get('edit/{offer_id}', 'OffersController@edit')->name('offer.edit'); // edite offer  
-    Route::post('update/{offer_id}', 'OffersController@update')->name('offers.update'); // update offer  
-    Route::post('delete/{offer_id}', 'OffersController@delete')->name('offer.delete'); // Delete offer  
+    Route::prefix('/offers')->group(function(){
+        Route::get('/', 'OffersController@index')->name('offers.index'); //get all offers
+        Route::get('/create', 'OffersController@create')->name('offers.create'); // show offer create form 
+        Route::post('/store', 'OffersController@store')->name('offers.store'); // store offer in offers table
+        Route::get('edit/{offer_id}', 'OffersController@edit')->name('offer.edit'); // edite offer  
+        Route::post('update/{offer_id}', 'OffersController@update')->name('offers.update'); // update offer  
+        Route::post('delete/{offer_id}', 'OffersController@delete')->name('offer.delete'); // Delete offer  
+    });
 
     //Videos 
     Route::get('/videos', 'VideosController@index')->name('videos.index');
-});
 
+    #################### Using Ajax with products #############################################
+    //products
+    Route::prefix('products')->group(function () {
+        Route::get('/', 'ProductsController@index')->name('products.index');
+        Route::get('/create', 'ProductsController@create')->name('products.create'); //create form
+        Route::post('/store', 'ProductsController@store')->name('products.store'); //store product 
+
+    });
+
+});
 
 // view method to return a view direct ,,, (url, view name, data passed to view)
 Route::namespace('Front')->prefix('/users')->group(function () {
