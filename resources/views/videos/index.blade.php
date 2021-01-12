@@ -11,4 +11,5 @@
             <h1>{{ __('index-videos.all-videos') }}</h1>
         </div>
     </div>
+</div>
 @endsection
