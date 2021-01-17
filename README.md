@@ -9,9 +9,9 @@ If you look at the code you will find a lot of comments, because I have been try
 ### In this course, you will find that: 
 <p>
     - Authentication <br>
-    - Verified E-mail when register <br>
+    - Verified E-mail when register >> Using mailTrap<br>
     - CRUD Operations <br>
-    - The website is in two languages (Arabic and English) <br>
+    - The website is in two languages (Arabic and English)  >> Using mcamara package <br>
     - Ajax request when add product<br>
     
 </p>
