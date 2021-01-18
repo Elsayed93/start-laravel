@@ -69,4 +69,13 @@ class ProductsController extends Controller
             'message' => 'product stored successfully',
         ]);
     }
+
+    //delete product with ajax Request
+    public function delete(Request $request)
+    {
+        $prod = Product::find($request->id);
+        $prod->delete();
+        return response()->json(['message' => 'success'], 200);
+        // Product::findOrFail($id)->delete();
+    }
 }

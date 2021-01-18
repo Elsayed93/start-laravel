@@ -34,7 +34,7 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
     //offers
-    Route::prefix('/offers')->group(function(){
+    Route::prefix('/offers')->group(function () {
         Route::get('/', 'OffersController@index')->name('offers.index'); //get all offers
         Route::get('/create', 'OffersController@create')->name('offers.create'); // show offer create form 
         Route::post('/store', 'OffersController@store')->name('offers.store'); // store offer in offers table
@@ -52,9 +52,9 @@ Route::group([
         Route::get('/', 'ProductsController@index')->name('products.index');
         Route::get('/create', 'ProductsController@create')->name('products.create'); //create form
         Route::post('/store', 'ProductsController@store')->name('products.store'); //store product 
+        Route::post('/delete', 'ProductsController@delete')->name('products.delete'); //delete product 
 
     });
-
 });
 
 // view method to return a view direct ,,, (url, view name, data passed to view)
