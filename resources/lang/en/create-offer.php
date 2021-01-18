@@ -9,8 +9,8 @@ return [
     'offer-details_en' => 'details in English',
     'offer-price' => 'Offer Price',
     'save-offer' => 'Add Offer',
-    'success-offer' => 'Offer added successfully',
+    'success' => ' added successfully',
     'edit-offer' => 'Edite Offer',
-    'update-offer' => 'Update',    
-    'offer-image' => 'Upload Offer Image',    
+    'update-offer' => 'Update',
+    'offer-image' => 'Upload Offer Image',
 ];

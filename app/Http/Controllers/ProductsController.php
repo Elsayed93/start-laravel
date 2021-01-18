@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\product\CreateRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Trait\OfferTrait;
 use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller
 {
+
+    use OfferTrait;
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function index()
     {
         $products = Product::get();
@@ -22,19 +32,20 @@ class ProductsController extends Controller
     }
 
     // store product using AJAX
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        $product = $request->all();
-        // validation 
-        // $validator = Validator::make([
 
-        // ]);
+        $path = 'images/products';
+        $file_name = $this->saveImage($request->image, $path);
 
         // store product 
         Product::create([
             'name' => $request->name,
             'details' => $request->details,
             'price' => $request->price,
+            'image' => $file_name,
         ]);
+
+        return view('products.create', ['successAdded' => __('create-offer.success')]);
     }
 }

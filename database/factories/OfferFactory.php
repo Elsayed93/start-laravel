@@ -25,9 +25,10 @@ class OfferFactory extends Factory
     {
         return [
             //
-            'name_ar' => $this->faker->name,
+            'name_ar' => 'نص عربي ' . rand(1, 100),
             'name_en' => $this->faker->name,
-            'details_ar' => $this->faker->text(),
+            'details_ar' => 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+            ',
             'details_en' => $this->faker->text(),
             'price' => rand(1, 200),
         ];

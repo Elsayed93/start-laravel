@@ -9,8 +9,8 @@ return [
     'offer-details_en' => 'تفاصيل العرض باللغة الإنجليزية',
     'offer-price' => 'سعر العرض ',
     'save-offer' => 'إضافة العرض',
-    'success-offer' => 'تم إضافة العرض بنجاح',
+    'success' => 'تم الإضافة بنجاح',
     'edit-offer' => 'تعديل العرض',
     'update-offer' => 'تعديل',
-    'offer-image' => 'رفع صورة العرض',    
+    'offer-image' => 'رفع صورة العرض',
 ];

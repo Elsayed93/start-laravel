@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Offer\UpdateRequest;
 use App\Http\Requests\OfferRequest;
+use App\Http\Requests\Offer\UpdateRequest;
 use App\Models\Offer;
 use App\Trait\OfferTrait;
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 
 class OffersController extends Controller
 {
@@ -69,8 +68,7 @@ class OffersController extends Controller
         //     return redirect()->back()->withErrors($validator)->withInput();
         // }
 
-
-        /*******************************          
+        /*******************************
          * save photo
          */
         $path = 'images/offers';
@@ -80,7 +78,7 @@ class OffersController extends Controller
         //     return 'moved';
         // }
         // return 'false';
-        /*******************************          
+        /*******************************
          * store data in database after validation
          */
         $offer = Offer::create([
@@ -96,17 +94,17 @@ class OffersController extends Controller
         return view('offers.create', ['successAdded' => __('create-offer.success-offer')]);
     }
 
-    // create form view 
+    // create form view
     public function create()
     {
         return view('offers.create');
     }
 
-    // edit offer view 
+    // edit offer view
     public function edit($id)
     {
-        // return $id; 
-        //$offer = Offer::findOrFail($id); //return Not Found if it was not found  
+        // return $id;
+        //$offer = Offer::findOrFail($id); //return Not Found if it was not found
         // dd($offer);
         // return $offer;
         $offer = Offer::find($id);
@@ -116,7 +114,7 @@ class OffersController extends Controller
         return view('offers.edit', ['offer' => $offer]);
     }
 
-    // update offer view 
+    // update offer view
     public function update(UpdateRequest $request, $id)
     {
         // $data = $request->validated();
