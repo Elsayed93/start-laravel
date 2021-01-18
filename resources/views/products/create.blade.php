@@ -15,19 +15,15 @@
       </div>
     </div>
 
-    @isset($successAdded)
-      <div class="row mt-2">
-        <div class="col-sm-6">
-          <div class="alert alert-success" role="alert">
-            {{-- offer added successfully --}}
-            {{ isset($successAdded) ? $successAdded : '' }}
-          </div>
-        </div>
+
+    {{-- create Message --}}
+    <div class="col-sm-6 mt-3">
+      <div class="alert alert-danger" role="alert" style="display: none" id="createMessage">
+
       </div>
-    @endisset
+    </div>
 
   </div>
-
   <div class="container">
     <div class="row my-5">
       <div class="col-sm-12">
@@ -118,10 +114,27 @@
           processData: false,
 
           success: function(data) {
-
+            console.log(data.message);
+            // alert(data.message);
           },
           error: function(reject) {
+            console.log(reject);
+            // alert(reject.responseJSON.message);
+            $('#createMessage').show().html(reject.responseJSON.message);
 
+            // var arr = reject.responseJSON.message;
+
+
+
+            // for (let key in arr) {
+
+            //   let error = arr[key];
+            //   $(`input[name="${key}"]`).parent().append(
+            //     `<span class="alert alert-danger mt-5" role="alert">${error[0]}</span>`)
+
+            // }
+
+            // alert(reject.message);
           },
         });
       });

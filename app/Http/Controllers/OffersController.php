@@ -6,8 +6,6 @@ use App\Http\Requests\OfferRequest;
 use App\Http\Requests\Offer\UpdateRequest;
 use App\Models\Offer;
 use App\Trait\OfferTrait;
-// use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class OffersController extends Controller
