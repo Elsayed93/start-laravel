@@ -1,117 +1,143 @@
 @extends('offers.nav')
-
-@section('title', __('create-offer.edit-offer'))
+{{-- title --}}
+@section('title', __('products.add-product'))
 
 @section('content')
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-sm-12">
-                {{-- edit offer --}}
-                <h1>{{ __('create-offer.edit-offer') }}</h1>
 
-            </div>
-        </div>
-        
-        {{-- offer updated successfully --}}
-        @if (session()->has('updateMessage'))
-            <div class="row mt-3">
-                <div class="col-sm-6">
-                    <div class="alert alert-success alert-dismissable">{{ session()->get('updateMessage') }}</div>
-                </div>
-            </div>
-        @endif
+  {{-- {{ dd($errors->all()) }} --}}
 
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-sm-12">
+        {{-- Update product --}}
+        <h1>{{ __('products.product-update') }}</h1>
 
+      </div>
     </div>
 
-    <div class="container">
-        <div class="row my-5">
-            <div class="col-sm-12">
-                <form method="POST" action="{{ route('offers.update', $offer->id) }}">
-                    @csrf
 
-                    <div class="mb-3">
-                        {{-- offer name_ar --}}
-                        <label for="name_ar" class="form-label">{{ __('create-offer.offer-name_ar') }}</label>
-                        <input type="text" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar"
-                            name="name_ar" aria-describedby="emailHelp" value="{{ $offer->name_ar }}"
-                            placeholder="{{ __('create-offer.offer-name_ar') }}">
-                        @error('name_ar')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+    {{-- update Message --}}
+    <div class="col-sm-6 mt-3">
+      <div class="alert alert-success" role="alert" style="display: none" id="updateMessage">
 
-                    <div class="mb-3">
-                        {{-- offer name_en --}}
-                        <label for="name_en" class="form-label">{{ __('create-offer.offer-name_en') }}</label>
-                        <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
-                            name="name_en" aria-describedby="emailHelp" value="{{ $offer->name_en }}"
-                            placeholder="{{ __('create-offer.offer-name_en') }}">
-                        @error('name_en')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        {{-- offer price --}}
-                        <label for="price" class="form-label">{{ __('create-offer.offer-price') }}</label>
-                        <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
-                            value="{{ $offer->price }}" placeholder="{{ __('create-offer.offer-price') }}">
-                        @error('price')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        {{-- offer details arabic--}}
-                        <label for="details_ar" class="form-label"> {{ __('create-offer.offer-details_ar') }}</label>
-                        <textarea name="details_ar" id="details_ar" cols="10" rows="5"
-                            class="form-control @error('details_ar') is-invalid @enderror"
-                            placeholder="{{ __('create-offer.offer-details_ar') }}">{{ $offer->details_ar }}</textarea>
-                        @error('details_ar')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        {{-- offer details english--}}
-                        <label for="details_en" class="form-label"> {{ __('create-offer.offer-details_en') }}</label>
-                        <textarea name="details_en" id="details_en" cols="10" rows="5"
-                            class="form-control @error('details_en') is-invalid @enderror"
-                            placeholder="{{ __('create-offer.offer-details_en') }}">{{ $offer->details_en }}</textarea>
-                        @error('details_en')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        {{-- offer image --}}
-                        <label for="image" class="form-label">{{ __('create-offer.offer-image') }}</label>
-                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
-                            value="{{ $offer->image }}" placeholder="{{ __('create-offer.offer-image') }}">
-                        @error('image')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    {{-- Update Button --}}
-                    <button type="submit" class="btn btn-primary" style="font-size: 12px; width:fit-content; padding:15px 20px;">{{ __('create-offer.update-offer') }}</button>
-                </form>
-
-            </div>
-        </div>
-
+      </div>
     </div>
+
+  </div>
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-sm-12">
+        <form method="" action="" id="updateForm">
+          @csrf
+
+          <div class="mb-3" style="display: none">
+            {{-- product id --}}
+            <label for="id" class="form-label">{{ __('products.product-id') }}</label>
+            <input type="text" class="form-control @error('id') is-invalid @enderror" id="id" name="id"
+              aria-describedby="emailHelp" value="{{ $product->id }}" placeholder="{{ __('products.product-id') }}">
+            @error('id')
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+
+          <div class="mb-3">
+            {{-- product name --}}
+            <label for="name" class="form-label">{{ __('products.product-name') }}</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+              aria-describedby="emailHelp" value="{{ $product->name }}" placeholder="{{ __('products.product-name') }}">
+            @error('name')
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+
+          <div class="mb-3">
+            {{-- offer price --}}
+            <label for="price" class="form-label">{{ __('products.product-price') }}</label>
+            <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
+              aria-describedby="emailHelp" value="{{ $product->price }}" placeholder="{{ __('products.product-price') }}">
+            @error('price')
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+
+          <div class="mb-3">
+            {{-- product details --}}
+            <label for="details" class="form-label"> {{ __('products.product-details') }}</label>
+            <textarea name="details" id="details" cols="10" rows="5"
+              class="form-control @error('details') is-invalid @enderror"
+              placeholder="{{ __('products.product-details') }}">{{ $product->details }}</textarea>
+            @error('details')
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+
+          <div class="mb-3">
+            {{-- product image --}}
+            <label for="image" class="form-label"> {{ __('products.product-image') }}</label>
+
+            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
+              aria-describedby="emailHelp" value="{{ $product->image }}" placeholder="{{ __('products.product-image') }}">
+
+            @error('image')
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+
+          <button prod_id="{{ $product->id }}" id="updateBtn" class="btn btn-primary"
+            style="font-size: 12px; width:fit-content; padding:15px 20px;">
+            {{ __('products.product-update') }}</button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+@endsection
+
+@section('script')
+  <script>
+    $(document).ready(function() {
+      $('#updateBtn').click(function(e) {
+        e.preventDefault();
+        var form = new FormData($('#updateForm')[0]);
+        // console.log(form);
+        $.ajax({
+
+          type: 'POST',
+          enctype: "multipart/form-data",
+          url: "{{ route('products.update') }}",
+
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+
+          data: form,
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          success: function(data) {
+            console.log(data);
+            $('#updateMessage').show().html(data.message);
+            // alert(data.message);
+          },
+          error: function(reject) {
+            console.log(reject);
+            alert(reject.message);
+          },
+        });
+      });
+    });
+
+  </script>
 @endsection

@@ -53,7 +53,8 @@ Route::group([
         Route::get('/create', 'ProductsController@create')->name('products.create'); //create form
         Route::post('/store', 'ProductsController@store')->name('products.store'); //store product 
         Route::post('/delete', 'ProductsController@delete')->name('products.delete'); //delete product 
-
+        Route::get('/edit/{id}', 'ProductsController@edit')->name('products.edit'); //edit product form
+        Route::post('/update', 'ProductsController@update')->name('products.update'); //update product form
     });
 });
 

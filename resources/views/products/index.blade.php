@@ -18,6 +18,12 @@
       </div>
     </div>
 
+    {{-- create Message --}}
+    <div class="col-sm-6 mt-3">
+      <div class="alert alert-success" role="alert" style="display: none" id="deleteMessage">
+
+      </div>
+    </div>
 
     <div class="row mt-5">
       <div class="col-sm-12">
@@ -37,7 +43,7 @@
           <tbody>
             @isset($products)
               @foreach ($products as $product)
-                <tr style="vertical-align: middle">
+                <tr class="productRow{{ $product->id }}">
                   <td>{{ $product->id }}</td>
                   <td>{{ $product->name }}</td>
                   <td>{{ $product->details }}</td>
@@ -45,18 +51,9 @@
                   <td> <img src="{{ asset('images/products/' . $product->image) }}" alt="" width="200px"></td>
                   <td style="display: flex">
                     {{-- edit offer --}}
-                    {{-- <a href="" class="editAction" prod_id="{{ $product->id }}">Edit</a>
-                    --}}
-
+                    <a href="{{ route('products.edit', $product->id) }}" class="editAction">Edit</a>
                     {{-- delete offer --}}
                     <a href="" class="deleteAction" prod_id="{{ $product->id }}">Delete</a>
-                    {{-- <button prod_id="{{ $product->id }}" class="deleteAction">
-                      Delete</button> --}}
-                    {{-- <form action="{{ route('offer.delete', $product->id) }}"
-                      method="post">
-                      @csrf
-                      <button type="submit" class="deleteAction">{{ __('index-offers.offer-delete') }}</button>
-                    </form> --}}
                   </td>
                 </tr>
               @endforeach
@@ -74,11 +71,11 @@
 @section('script')
   <script>
     $(document).ready(function() {
+      // ----------- delete Button  ------------ //
       $('.deleteAction').click(function(e) {
-        var _tr = $(this).parent().parent()
+        // var _tr = $(this).parent().parent();
         e.preventDefault();
         var prod_id = $(this).attr('prod_id');
-        console.log(prod_id);
         $.ajax({
 
           url: "{{ route('products.delete') }}",
@@ -93,14 +90,16 @@
           },
 
           success: function(data) {
-            _tr.addClass('d-none');
-
-
-
+            console.log(data);
+            $('#deleteMessage').show().html(data.message);
+            $(`.productRow${data.id}`).remove();
+            console.log(`.productRow${data.id}`);
+            alert(data.message);
           },
 
           reject: function(reject) {
-
+            console.log(reject);
+            // alert(reject.message);
           }
         });
       });

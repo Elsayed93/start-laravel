@@ -10,4 +10,6 @@ return [
     'product-actions' => 'Product actions',
     'product-image' => 'Product Image',
     'product-save' => 'Add Product',
+    'product-update' => 'Update Product',
+    'product-id' => 'Product id',
 ];

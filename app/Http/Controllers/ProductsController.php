@@ -73,9 +73,50 @@ class ProductsController extends Controller
     //delete product with ajax Request
     public function delete(Request $request)
     {
-        $prod = Product::find($request->id);
-        $prod->delete();
-        return response()->json(['message' => 'success'], 200);
-        // Product::findOrFail($id)->delete();
+        // return $request;
+        $product = Product::find($request->id);
+        $product->delete();
+
+        if (!$product) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'failed to delete',
+                'id' => $request->id,
+            ], 400);
+        }
+
+        return response()->json([
+            'status' => 'true',
+            'message' => 'deleted successfully',
+            'id' => $request->id,
+        ], 200);
+    }
+
+    // edit product form
+    public function edit(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+
+        return view('products.edit', ['product' => $product]);
+    }
+
+    // update product
+    public function update(Request $request)
+    {
+        // return $request;
+
+        $product = Product::findOrFail($request->id)->update($request->all());
+
+        if (!$product) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'failed to update',
+            ], 400);
+        }
+
+        return response()->json([
+            'status' => 'true',
+            'message' => 'successfully updated',
+        ], 200);
     }
 }

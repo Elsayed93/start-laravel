@@ -10,4 +10,6 @@ return [
     'product-actions' => 'العمليات على  المنتج',
     'product-image' => 'صورة المنتج',
     'product-save' => 'إضافة المنتج',
+    'product-update' => 'تحديث المنتج',
+    'product-id' => 'الرقم التعريفي للمنتج',
 ];
