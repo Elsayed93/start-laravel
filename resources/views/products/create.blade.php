@@ -91,6 +91,17 @@
     $(document).ready(function() {
       $('#storeBtn').click(function(e) {
         e.preventDefault();
+        // var formElement = $('#createForm');
+        // console.log(formElement[0]);
+
+        // for (i = 0; i < document.forms[0].elements.length; i++) {
+        //   console.log(document.forms[0].elements[i]);
+        // }
+
+        $('#name-error').text('');
+        $('#price-error').text('');
+        $('#details-error').text('');
+        $('#image-error').text('');
         var form = new FormData($('#createForm')[0]);
         // console.log(form);
         $.ajax({
@@ -109,7 +120,7 @@
           processData: false,
 
           success: function(data) {
-            console.log(data.message);
+            // console.log(data.message);
             // alert(data.message);
           },
 
@@ -122,8 +133,8 @@
               // console.log(errorsObj.errors[key][0]);
               let error = errorsObj.errors[key];
 
-              console.log('#' + key + '-error');
-              console.log(error[0]);
+              // console.log('#' + key + '-error');
+              // console.log(error[0]);
               $('#' + key + '-error').text(error[0]);
               // const element = errorsObj.errors[key];
               // console.log(element[0]);
