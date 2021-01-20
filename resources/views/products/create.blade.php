@@ -17,68 +17,63 @@
 
 
     {{-- create Message --}}
-    <div class="col-sm-6 mt-3">
+    {{-- <div class="col-sm-6 mt-3">
       <div class="alert alert-danger" role="alert" style="display: none" id="createMessage">
 
       </div>
-    </div>
+    </div> --}}
 
   </div>
   <div class="container">
     <div class="row my-5">
       <div class="col-sm-12">
+        {{-----------------------Create_Form---------------------}}
         <form method="" action="" id="createForm">
           @csrf
 
           <div class="mb-3">
             {{-- product name --}}
             <label for="name" class="form-label">{{ __('products.product-name') }}</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-              aria-describedby="emailHelp" value="{{ old('name') }}" placeholder="{{ __('products.product-name') }}">
-            @error('name')
-              <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                {{ $message }}
-              </div>
-            @enderror
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"
+              value="{{ old('name') }}" placeholder="{{ __('products.product-name') }}">
+            <div id="name-error" class="form-text text-danger">
+
+            </div>
           </div>
 
           <div class="mb-3">
             {{-- offer price --}}
             <label for="price" class="form-label">{{ __('products.product-price') }}</label>
-            <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
-              aria-describedby="emailHelp" value="{{ old('price') }}" placeholder="{{ __('products.product-price') }}">
-            @error('price')
-              <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                {{ $message }}
-              </div>
-            @enderror
+            <input type="text" class="form-control" id="price" name="price" aria-describedby="emailHelp"
+              value="{{ old('price') }}" placeholder="{{ __('products.product-price') }}">
+
+            <div id="price-error" class="form-text text-danger">
+
+            </div>
+
           </div>
 
           <div class="mb-3">
             {{-- product details --}}
             <label for="details" class="form-label"> {{ __('products.product-details') }}</label>
-            <textarea name="details" id="details" cols="10" rows="5"
-              class="form-control @error('details') is-invalid @enderror"
+            <textarea name="details" id="details" cols="10" rows="5" class="form-control"
               placeholder="{{ __('products.product-details') }}">{{ old('details') }}</textarea>
-            @error('details')
-              <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                {{ $message }}
-              </div>
-            @enderror
+
+            <div id="details-error" class="form-text text-danger">
+
+            </div>
           </div>
 
           <div class="mb-3">
             {{-- product image --}}
             <label for="image" class="form-label"> {{ __('products.product-image') }}</label>
 
-            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
-              aria-describedby="emailHelp" value="{{ old('image') }}" placeholder="{{ __('products.product-image') }}">
+            <input type="file" class="form-control" id="image" name="image" aria-describedby="emailHelp"
+              value="{{ old('image') }}" placeholder="{{ __('products.product-image') }}">
 
-            @error('image')
-              <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                {{ $message }}
-              </div>
-            @enderror
+            <div id="image-error" class="form-text text-danger">
+
+            </div>
           </div>
 
           <button id="storeBtn" class="btn btn-primary" style="font-size: 12px; width:fit-content; padding:15px 20px;">
@@ -117,24 +112,29 @@
             console.log(data.message);
             // alert(data.message);
           },
+
           error: function(reject) {
-            console.log(reject);
-            // alert(reject.responseJSON.message);
-            $('#createMessage').show().html(reject.responseJSON.message);
 
-            // var arr = reject.responseJSON.message;
+            var errorsObj = $.parseJSON(reject.responseText)
+            // console.log(errorsObj.errors);
 
+            for (const key in errorsObj.errors) {
+              // console.log(errorsObj.errors[key][0]);
+              let error = errorsObj.errors[key];
 
+              console.log('#' + key + '-error');
+              console.log(error[0]);
+              $('#' + key + '-error').text(error[0]);
+              // const element = errorsObj.errors[key];
+              // console.log(element[0]);
 
-            // for (let key in arr) {
-
-            //   let error = arr[key];
-            //   $(`input[name="${key}"]`).parent().append(
-            //     `<span class="alert alert-danger mt-5" role="alert">${error[0]}</span>`)
-
+            }
+            // for (let key in errors) {
+            //   let value = errors[key];
+            //   // console.log(value);
+            //   console.log(value[0]);
+            //   $(`#${key}-error`).text(value[0]);
             // }
-
-            // alert(reject.message);
           },
         });
       });

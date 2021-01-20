@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
             'name' => 'required|unique:products,name|max:255',
             'details' => 'required|min:10',
             'price' => 'required|max:255|min:1',
-            // 'image' => 'required'
+            'image' => 'required'
         ];
     }
 
@@ -38,7 +38,7 @@ class CreateRequest extends FormRequest
             'name.unique' => __('messages.name.unique'),
             'details.required' => __('messages.details.required'),
             'price.required' => __('messages.price.required'),
-            // 'image' => __('messages.image.required'),
+            'image' => __('messages.image.required'),
         ];
     }
 }

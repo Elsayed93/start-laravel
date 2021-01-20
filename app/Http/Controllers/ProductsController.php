@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\product\CreateRequest;
 use App\Models\Product;
-use App\Trait\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\OfferTrait;
 
 class ProductsController extends Controller
 {
@@ -32,24 +32,8 @@ class ProductsController extends Controller
     }
 
     // store product using AJAX
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //validation 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:products,name|max:255',
-            'details' => 'required|min:10',
-            'price' => 'required|max:255|min:1',
-            'image' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            // return redirect()->back()->withErrors($validator)->withInput();
-            return response([
-                'status' => 'false',
-                'message' => 'failed to store',
-            ], 400);
-        }
-
 
         $path = 'images/products';
         $file_name = $this->saveImage($request->image, $path);
@@ -64,6 +48,12 @@ class ProductsController extends Controller
 
         // return view('products.create', ['successAdded' => __('create-offer.success')]);
 
+        // if (!$product) {
+        //     return response()->json([
+        //         'status' => 'false',
+        //         'message' => 'failed stored product',
+        //     ]);
+        // }
         return response([
             'status' => 'true',
             'message' => 'product stored successfully',

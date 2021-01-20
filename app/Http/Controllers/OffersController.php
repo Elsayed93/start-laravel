@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OfferRequest;
 use App\Http\Requests\Offer\UpdateRequest;
 use App\Models\Offer;
-use App\Trait\OfferTrait;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Traits\OfferTrait;
 
 class OffersController extends Controller
 {
