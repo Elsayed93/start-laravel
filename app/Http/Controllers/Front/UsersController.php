@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
+
     // public function index()
     // {
     //     $data = [
@@ -20,7 +21,8 @@ class UsersController extends Controller
     //     return view('front-end.home', ['data1' => $data]);
     // }
 
-    public function index(){
+    public function index()
+    {
         $users = DB::table('users')->get();
         dd($users);
     }
