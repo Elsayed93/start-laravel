@@ -17,18 +17,18 @@
 
 
     {{-- create Message --}}
-    {{-- <div class="col-sm-6 mt-3">
-      <div class="alert alert-danger" role="alert" style="display: none" id="createMessage">
+    <div class="col-sm-6 mt-3">
+      <div class="alert alert-primary" role="alert" style="display: none" id="createMessage">
 
       </div>
-    </div> --}}
+    </div>
 
   </div>
   <div class="container">
     <div class="row my-5">
       <div class="col-sm-12">
-        {{-----------------------Create_Form---------------------}}
-        <form method="" action="" id="createForm">
+        {{-- ---------------------Create_Form------------------- --}}
+        <form id="createForm">
           @csrf
 
           <div class="mb-3">
@@ -91,19 +91,14 @@
     $(document).ready(function() {
       $('#storeBtn').click(function(e) {
         e.preventDefault();
-        // var formElement = $('#createForm');
-        // console.log(formElement[0]);
-
-        // for (i = 0; i < document.forms[0].elements.length; i++) {
-        //   console.log(document.forms[0].elements[i]);
-        // }
 
         $('#name-error').text('');
         $('#price-error').text('');
         $('#details-error').text('');
         $('#image-error').text('');
+
         var form = new FormData($('#createForm')[0]);
-        // console.log(form);
+        console.log(form);
         $.ajax({
 
           type: 'POST',
@@ -120,8 +115,9 @@
           processData: false,
 
           success: function(data) {
-            // console.log(data.message);
-            // alert(data.message);
+            console.log(data.message);
+            $('#createMessage').show().html(data.message);
+            alert(data.message);
           },
 
           error: function(reject) {

@@ -53,7 +53,7 @@
                     {{-- edit offer --}}
                     <a href="{{ route('products.edit', $product->id) }}" class="editAction">Edit</a>
                     {{-- delete offer --}}
-                    <a href="" class="deleteAction" prod_id="{{ $product->id }}">Delete</a>
+                    <a href="" class="deleteAction" data-url="{{ route('products.destroy', $product->id) }}">Delete</a>
                   </td>
                 </tr>
               @endforeach
@@ -75,22 +75,21 @@
       $('.deleteAction').click(function(e) {
         // var _tr = $(this).parent().parent();
         e.preventDefault();
-        var prod_id = $(this).attr('prod_id');
+        var url = $(this).attr('data-url');
+
+        console.log(url);
         $.ajax({
 
-          url: "{{ route('products.delete') }}",
-          type: 'POST',
+
+          url: url,
+          type: 'DELETE',
 
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
 
-          data: {
-            'id': prod_id,
-          },
-
           success: function(data) {
-            console.log(data);
+            // console.log(data);
             $('#deleteMessage').show().html(data.message);
             $(`.productRow${data.id}`).remove();
             console.log(`.productRow${data.id}`);

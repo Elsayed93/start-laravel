@@ -24,9 +24,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         // dd($this->all());
+
+        // dd($this->offer_id);
         return [
-            'name_ar' => 'required|unique:offers,name_ar,' . $this->offer_id . '|max:255',
-            'name_en' => 'required|unique:offers,name_en,' . $this->offer_id . '|max:255',
+            'name_ar' => 'required|unique:offers,name_ar,' . $this->offer . '|max:255',
+            'name_en' => 'required|unique:offers,name_en,' . $this->offer . '|max:255',
             'details_ar' => 'required|min:10',
             'details_en' => 'required|min:10',
             'price' => 'required|max:255|min:1',

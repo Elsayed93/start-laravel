@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\product\CreateRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Traits\OfferTrait;
+use App\Http\Requests\product\UpdateRequest;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -34,6 +34,7 @@ class ProductsController extends Controller
     // store product using AJAX
     public function store(CreateRequest $request)
     {
+        // dd($request->all());
 
         $path = 'images/products';
         $file_name = $this->saveImage($request->image, $path);
@@ -46,14 +47,13 @@ class ProductsController extends Controller
             'image' => $file_name,
         ]);
 
-        // return view('products.create', ['successAdded' => __('create-offer.success')]);
+        if (!$product) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'failed stored product',
+            ]);
+        }
 
-        // if (!$product) {
-        //     return response()->json([
-        //         'status' => 'false',
-        //         'message' => 'failed stored product',
-        //     ]);
-        // }
         return response([
             'status' => 'true',
             'message' => 'product stored successfully',
@@ -61,40 +61,42 @@ class ProductsController extends Controller
     }
 
     //delete product with ajax Request
-    public function delete(Request $request)
+    public function destroy($id)
     {
-        // return $request;
-        $product = Product::find($request->id);
-        $product->delete();
+        $product = Product::find($id);
 
         if (!$product) {
             return response()->json([
                 'status' => 'false',
                 'message' => 'failed to delete',
-                'id' => $request->id,
+                'id' => $id,
             ], 400);
         }
+
+        $product->delete();
 
         return response()->json([
             'status' => 'true',
             'message' => 'deleted successfully',
-            'id' => $request->id,
+            'id' => $id,
         ], 200);
     }
 
     // edit product form
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $product = Product::findOrFail($request->id);
+        $product = Product::findOrFail($id);
 
         return view('products.edit', ['product' => $product]);
     }
 
     // update product
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        // return $request;
-
+        // dd($id);
+        dd($request->all());
+        dd('asdasdasdasdasdad');
+        // dd($request->input('name'));
         $product = Product::findOrFail($request->id)->update($request->all());
 
         if (!$product) {

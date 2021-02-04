@@ -1,5 +1,6 @@
 <?php
 
+// use App\Http\Controllers\OffersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::multiauth('Administrator', 'administrator');
+
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => 'lang'
+], function () {
+    #### offers 
+    Route::resource('/offers', OffersController::class);
+
+    #### products 
+    Route::resource('/products', ProductsController::class);
+
+    #### videos 
+    Route::resource('/videos', VideosController::class);
+});

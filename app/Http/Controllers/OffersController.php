@@ -115,6 +115,7 @@ class OffersController extends Controller
     // update offer view
     public function update(UpdateRequest $request, $id)
     {
+        // dd($id);
         // $data = $request->validated();
         // dd($data);
         $offer = Offer::findOrFail($id);
@@ -133,7 +134,7 @@ class OffersController extends Controller
         return redirect()->back()->with('updateMessage', __('index-offers.offer-updateSuccessfully'));
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         // return $id;
         $offer = Offer::findOrFail($id);
