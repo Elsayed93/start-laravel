@@ -27,8 +27,11 @@
   <div class="container">
     <div class="row my-5">
       <div class="col-sm-12">
-        <form id="updateForm">
-          @csrf
+        <form id="updateForm" enctype= "multipart/form-data">
+>
+           @csrf
+           @method('PATCH')
+
 
           <div class="mb-3" style="display: none">
             {{-- product id --}}
@@ -108,24 +111,23 @@
         $('#image-error').text('');
 
         var form = new FormData($('#updateForm')[0]);
+        var name = $('#name').val();
+        var price = $('#price').val();
+        var details = $('#details').val();
+        var image = $('#image').val();
 
-        console.log(form);
+
+        console.log(details);
+
         $.ajax({
 
-          type: 'PATCH',
-          enctype: "multipart/form-data",
+          type: "POST",
           url: url,
+          data: $('#updateForm').serialize(),
 
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-
-          data: {
-            form,
-            _method: "PATCH"
-          },
+          
           cache: false,
-          contentType: false,
+          //contentType: false, ??? this is the problem >>>>>>>><<<<<<<<<
           processData: false,
 
           success: function(data) {
