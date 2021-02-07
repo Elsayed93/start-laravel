@@ -39,3 +39,6 @@ Route::group([
     #### videos 
     Route::resource('/videos', VideosController::class);
 });
+
+#### home page 
+Route::view('homepage', 'homepage')->name('homePage');
