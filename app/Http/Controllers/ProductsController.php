@@ -6,7 +6,6 @@ use App\Http\Requests\product\CreateRequest;
 use App\Models\Product;
 use App\Traits\OfferTrait;
 use App\Http\Requests\product\UpdateRequest;
-use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -34,7 +33,6 @@ class ProductsController extends Controller
     // store product using AJAX
     public function store(CreateRequest $request)
     {
-        // dd($request->all());
 
         $path = 'images/products';
         $file_name = $this->saveImage($request->image, $path);
@@ -91,13 +89,10 @@ class ProductsController extends Controller
     }
 
     // update product
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        // dd($id);
-        dd($request->all());
-        dd('asdasdasdasdasdad');
-        // dd($request->input('name'));
-        $product = Product::findOrFail($request->id)->update($request->all());
+
+        $product = Product::findOrFail($id)->update($request->all());
 
         if (!$product) {
             return response()->json([

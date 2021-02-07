@@ -89,7 +89,7 @@ class OffersController extends Controller
         ]);
 
         // dd($offer);
-        return view('offers.create', ['successAdded' => __('create-offer.success-offer')]);
+        return view('offers.create', ['successAdded' => __('create-offer.success')]);
     }
 
     // create form view

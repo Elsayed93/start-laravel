@@ -30,6 +30,7 @@ class OfferRequest extends FormRequest
             'details_ar' => 'required|min:10',
             'details_en' => 'required|min:10',
             'price' => 'required|max:255|min:1',
+            'image' => 'required|image',
             // 'image' => 'required'
         ];
     }

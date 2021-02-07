@@ -120,12 +120,9 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
 
-          data: {
-            form,
-            _method: "PATCH"
-          },
+          data: $('#updateForm').serialize(),
           cache: false,
-          contentType: false,
+          // contentType: false,
           processData: false,
 
           success: function(data) {
@@ -134,7 +131,7 @@
             // var obj = JSON.parse(data.responseJSON);
             // console.log(obj);
             $('#updateMessage').show().html(data.message);
-            // alert(data.message);
+            alert(data.message);
           },
           error: function(reject) {
             console.log('not success');
