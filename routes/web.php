@@ -1,6 +1,8 @@
 <?php
 
 // use App\Http\Controllers\OffersController;
+
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +44,13 @@ Route::group([
 
 #### home page 
 Route::view('homepage', 'homepage')->name('homePage');
+
+
+################################# start Relations ##############################
+use App\Http\Controllers\Relations\RelationsController;
+
+// one to one (users && phones )
+Route::get('user/phone/{id}', [RelationsController::class, 'oneToOne']); // one to one 
+Route::get('phone/user/{id}', [RelationsController::class, 'inverseOneToOne']); // inverse one to one 
+
+################################# end Relations ##############################

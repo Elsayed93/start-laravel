@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Phone;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -30,6 +31,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at',
+        
+        // 'id',
     ];
 
     /**
@@ -40,4 +46,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // one to one relation (user && phone )
+    public function phone()
+    {
+        return $this->hasOne(Phone::class, 'user_id');
+    }
 }

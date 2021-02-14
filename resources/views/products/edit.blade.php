@@ -126,6 +126,7 @@
           processData: false,
 
           success: function(data) {
+
             console.log(data);
             console.log('success');
             // var obj = JSON.parse(data.responseJSON);
