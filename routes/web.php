@@ -53,4 +53,18 @@ use App\Http\Controllers\Relations\RelationsController;
 Route::get('user/phone/{id}', [RelationsController::class, 'oneToOne']); // one to one 
 Route::get('phone/user/{id}', [RelationsController::class, 'inverseOneToOne']); // inverse one to one 
 
+// one to many 
+Route::get('hospital/doctor/{id}', [RelationsController::class, 'oneToMany']); // one to many
+Route::get('doctor/hospital/{id}', [RelationsController::class, 'inverseOneToMany']); // inverse one to many
+
+
 ################################# end Relations ##############################
+
+################################# start hospitals controller ##############################
+use App\Http\Controllers\Relations\HospitalsController;
+
+Route::prefix('hospital')->group(function(){
+    Route::get('/',[HospitalsController::class,'allHospitals']);
+    Route::get('/{hospital_id}',[HospitalsController::class,'allDoctors'])->name('doctors');
+});
+################################# end hospitals controller ##############################
