@@ -57,14 +57,21 @@ Route::get('phone/user/{id}', [RelationsController::class, 'inverseOneToOne']); 
 Route::get('hospital/doctor/{id}', [RelationsController::class, 'oneToMany']); // one to many
 Route::get('doctor/hospital/{id}', [RelationsController::class, 'inverseOneToMany']); // inverse one to many
 
-
+// many to many (doctors && services)
+Route::get('/doctors', [RelationsController::class, 'doctorServices']);
 ################################# end Relations ##############################
 
 ################################# start hospitals controller ##############################
 use App\Http\Controllers\Relations\HospitalsController;
 
-Route::prefix('hospital')->group(function(){
-    Route::get('/',[HospitalsController::class,'allHospitals']);
-    Route::get('/{hospital_id}',[HospitalsController::class,'allDoctors'])->name('doctors');
+Route::prefix('hospital')->group(function () {
+    Route::get('/', [HospitalsController::class, 'allHospitals'])->name('hospitals.index');
+    Route::get('/{hospital_id}', [HospitalsController::class, 'allDoctors'])->name('doctors');
+    Route::post('/{hospital_id}', [HospitalsController::class, 'deleteHospital'])->name('hospital.delete');
 });
 ################################# end hospitals controller ##############################
+
+
+################################# start Doctors services relation (many to many) ##############################
+
+################################# end Doctors services relation (many to many) ##############################

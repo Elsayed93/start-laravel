@@ -40,7 +40,7 @@ class RelationsController extends Controller
     }
 
 
-    // many to many (hospitals and doctors) >>>> one hospital to many doctors
+    // one to many (hospital and doctors) >>>> one hospital to many doctors
     public function oneToMany(int $id)
     {
         $hospital = Hospital::with('doctors')->find($id);
@@ -53,11 +53,38 @@ class RelationsController extends Controller
     }
 
 
-    // Inverse many to many (hospitals and doctors) >>>> one hospital to many doctors
+    // Inverse one to many (hospital and doctors) >>>> one hospital to many doctors
     public function inverseOneToMany(int $id)
     {
         $doctor = Doctor::with('hospital')->find($id);
 
         return $doctor;
+    }
+
+
+    // many to many (hospital and services)
+    public function doctorServices()
+    {
+        // $doctors = Doctor::with('services')->get();
+        // dd($doctors->toArray());
+
+        // foreach ($doctors as $doctor) {
+        //     // echo $doctor . '<br>';
+        //     foreach ($doctor->services as $service) {
+        //         echo $service->name . '<br>';
+        //     }
+        // }
+        // return;
+
+        $doctor = Doctor::with('services')->find(5);
+        // dd($doctor->toArray());
+
+        return $doctor->services;
+
+        // foreach ($doctor->services as $service) {
+        //     echo $service->name . '<br>';
+        // }
+
+        // return Doctor::with('services')->get();
     }
 }

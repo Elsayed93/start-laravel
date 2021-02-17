@@ -17,4 +17,10 @@ class Doctor extends Model
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');
     }
+
+    // many to many relation (doctors && services)
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'doctor_service', 'doctor_id', 'service_id');
+    }
 }
